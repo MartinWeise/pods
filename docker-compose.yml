@@ -19,6 +19,9 @@ services:
     hostname: pods-proxy
     networks:
       public:
+    volumes:
+      - /etc/letsencrypt/live/dev.martinweise.at/fullchain.pem:/certs/fullchain.pem
+      - /etc/letsencrypt/live/dev.martinweise.at/privkey.pem:/certs/privkey.pem
     ports:
       - "80:80"
       - "443:443"
