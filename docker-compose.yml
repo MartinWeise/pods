@@ -1,0 +1,35 @@
+version: "3.8"
+
+networks:
+
+  public:
+    name: public
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.29.0.0/16
+
+services:
+
+  pods-proxy:
+    image: pods-proxy
+    restart: on-failure
+    build: ./proxy
+    container_name: pods-proxy
+    hostname: pods-proxy
+    networks:
+      public:
+    ports:
+      - "80:80"
+      - "443:443"
+    logging:
+      driver: json-file
+
+  pods-pods:
+    image: solidproject/community-server
+    container_name: pods-pods
+    hostname: pods-pods
+    networks:
+      public:
+    logging:
+      driver: json-file
