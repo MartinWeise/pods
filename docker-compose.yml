@@ -34,8 +34,6 @@ services:
     image: solidproject/community-server
     container_name: pods-pods
     hostname: pods-pods
-    command:
-      - "-b https://dev.martinweise.at/"
     networks:
       public:
     logging:
